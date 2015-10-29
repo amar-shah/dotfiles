@@ -1,0 +1,43 @@
+# ~/.aliases
+
+#
+# cross-platform functions
+#
+
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+alias tree='tree -C'
+
+#
+# Ruby-related aliases
+#
+
+alias cuke_steps='[ -d spec/features ] && { \
+	find spec/features -type f -name "*_steps.rb" \
+	-exec egrep "^step ?" {} \; | \
+	sort | coderay -ruby -div | bcat
+}'
+
+alias cuke4duke_steps='[ -d src ] && { \
+	find src -type f -name "*Steps.java" \
+	-exec egrep "@(I18n\.EN\.)?(Given|When|Then)" {} \; | \
+	sort | coderay -java -div | bcat
+}'
+
+#
+# platform-specific aliases
+#
+
+case "`uname`" in
+	Darwin*)
+		alias ls='ls -G'
+		alias la='ls -aF'
+		alias l1='ls -1F'
+		alias ll='ls -alF'
+		alias l.='ls -d .*'
+
+                alias tgs='pbpaste | cut -c 1-7 | tr -d "\n" | pbcopy'
+                alias ocg='open $( git config --local --get remote.origin.url | sed -e 's#git@github.com:#https://github.com/#' | sed -e "s#\.git\$#/commit/`pbpaste | tr -d '\n'`#" )'
+	;;
+esac

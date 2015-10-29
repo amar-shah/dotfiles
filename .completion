@@ -1,0 +1,35 @@
+# ~/.completion
+
+[ $(uname -s) = 'Darwin' ] && {
+
+	brew_prefix=`brew --prefix` ;
+
+	# http://electronicingenuity.com/bash-completion-for-ant-on-os-x-with-homebrew
+	# _source_if_exists "${brew_prefix}/etc/bash_completion" ;
+
+	# completion support for Ant build scripts
+	complete -C "$HOME/.complete-ant-cmd.pl" ant ;
+
+	# this creates aliases for GNU core utils installed via homebrew
+	_source_if_exists "${brew_prefix}/Cellar/coreutils/8.12/aliases" ;
+
+	# completion for the brew command
+	_source_if_exists "${brew_prefix}/Library/Contributions/brew_bash_completion.sh" ;
+
+	# completion and functions for cdargs
+	_source_if_exists "${brew_prefix}/etc/bash_completion.d/cdargs-bash.sh" ;
+
+	# git prompting and completion
+	_source_if_exists "${brew_prefix}/etc/bash_completion.d/git-prompt.sh" ;
+	_source_if_exists "${brew_prefix}/etc/bash_completion.d/git-completion.bash" ;
+
+	# gitflow configuration and completion
+	_source_if_exists "${brew_prefix}/etc/bash_completion.d/git-flow-completion.bash" ;
+
+	# SSH Completion from https://github.com/jspc/homedir/blob/master/.bashables/ssh-completion
+	# FIXME https://github.com/simplybusiness/sbrc/pull/62#issuecomment-15072218
+	# _source_if_exists "$HOME/.ssh-completion" ;
+
+	unset brew_prefix ;
+
+}

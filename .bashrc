@@ -11,6 +11,7 @@ _source_if_exists() {
 	_source_if_exists "${HOME}/.aliases" ;
 	_source_if_exists "${HOME}/.completion" ;
 	_source_if_exists "${HOME}/.prompting" ;
+	_source_if_exists "${HOME}/.after_sbrc" ;
 
 # esac
 

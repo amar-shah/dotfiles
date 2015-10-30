@@ -1,0 +1,43 @@
+
+[hub]
+protocol = https
+
+# [credential]
+# 	helper = osxkeychain
+[core]
+	excludesfile = /Users/ashah/.gitignore_global
+[color]
+	ui = auto
+[push]
+	default = matching
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	ls = ls-files
+	wc = whatchanged
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	last = log -n 1 HEAD
+	wdiff = diff --word-diff
+	unstage = reset HEAD --
+	contributors = shortlog -s -n
+[diff "postcodedump"]
+	textconv = postcode_dump.sh
+[diff "insurerdocs"]
+	textconv = insurer_docs.sh
+[user]
+	name = Amar Shah
+	email = amar.shah@simplybusiness.co.uk
+[merge]
+	keepBackup = false;
+	tool = p4merge
+[mergetool "p4merge"]
+	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
+# [diff]
+# 	external = p4diff
